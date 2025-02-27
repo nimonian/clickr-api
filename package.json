@@ -1,12 +1,21 @@
 {
   "name": "clickr-api",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cross-env NODE_ENV=production node app.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "knex": "^3.1.0",
+    "morgan": "^1.10.0"
+  }
 }
