@@ -25,6 +25,7 @@ app.post('/click', async (_req, res) => {
     res.status(201).json({ msg: 'Click!' })
   } catch (err) {
     res.status(500).json({ msg: err.message })
+    console.error(err)
   }
 })
 
