@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
@@ -19,9 +20,9 @@ app.get('/', (_req, res) => {
   res.json({ msg: 'Hello world!' })
 })
 
-app.post('/click', async (_req, res) => {
+app.post('/clicks', async (_req, res) => {
   try {
-    await db('clicks').insert()
+    await db('clicks').insert({})
     res.status(201).json({ msg: 'Click!' })
   } catch (err) {
     res.status(500).json({ msg: err.message })
@@ -29,6 +30,16 @@ app.post('/click', async (_req, res) => {
   }
 })
 
-const PORT = process.env.PORT || 5000
+app.get('/clicks/count', async (_req, res) => {
+  try {
+    const data = await db('clicks').select().count()
+    const count = data[0].count
+    res.json({ count })
+  } catch (err) {
+    res.status(500).json({ msg: err.message })
+    console.error(err)
+  }
+})
 
+const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`API listening on port ${PORT}`))
