@@ -21,7 +21,7 @@ app.get('/', (_req, res) => {
 
 app.post('/click', async (_req, res) => {
   try {
-    db('clicks').insert()
+    await db('clicks').insert()
     res.status(201).json({ msg: 'Click!' })
   } catch (err) {
     res.status(500).json({ msg: err.message })
